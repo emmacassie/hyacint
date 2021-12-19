@@ -13,7 +13,7 @@ export default function Home() {
     const randomIndex = Math.floor(randomNumber * arrayLength)
     return arr[randomIndex]
   }
-  if ((currentHour >= 5 && currentHour < 12) || (currentHour === 5 && currentMinute > 30)) {currentGreeting = getRandomGreeting(greeting.morning)}
+  if ((currentHour >= 5 && currentHour < 12) || (currentHour === 5 && currentMinute > 30)) {currentGreeting = getRandomGreeting(greetings.morning)}
   if ((currentHour >= 12 ) && (currentHour < 17))  {currentGreeting = getRandomGreeting(greetings.afternoon)}
   if ((currentHour >= 17 && currentHour < 23) || (currentHour === 23 && currentMinute < 30))  {currentGreeting = getRandomGreeting(greetings.evening)}
   if ((currentHour >= 0 && currentHour < 5) || (currentHour === 23 && currentMinute > 30))  {currentGreeting = getRandomGreeting(greetings.night)}
