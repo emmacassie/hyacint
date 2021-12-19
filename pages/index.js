@@ -16,11 +16,6 @@ export default function Home() {
           Good morning &lt;3
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
       </main>
 
       <footer className={styles.footer}>
