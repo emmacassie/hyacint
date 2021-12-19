@@ -7,10 +7,16 @@ export default function Home() {
   let currentGreeting = "Hello" 
   const currentHour = new Date().getHours()
   const currentMinute = new Date().getMinutes()
-  if ((currentHour >= 5 && currentHour < 12) || (currentHour === 5 && currentMinute > 30)) {currentGreeting = greetings.morning[0]}
-  if ((currentHour >= 12 ) && (currentHour < 17))  {currentGreeting = greetings.afternoon[0]}
-  if ((currentHour >= 17 && currentHour < 23) || (currentHour === 23 && currentMinute < 30))  {currentGreeting = greetings.evening[0]}
-  if ((currentHour >= 0 && currentHour < 5) || (currentHour === 23 && currentMinute > 30))  {currentGreeting = greetings.night[1]}
+  function getRandomGreeting(arr) {
+    const randomNumber = Math.random()
+    const arrayLength = arr.length
+    const randomIndex = Math.floor(randomNumber * arrayLength)
+    return arr[randomIndex]
+  }
+  if ((currentHour >= 5 && currentHour < 12) || (currentHour === 5 && currentMinute > 30)) {currentGreeting = getRandomGreeting(greeting.morning)}
+  if ((currentHour >= 12 ) && (currentHour < 17))  {currentGreeting = getRandomGreeting(greetings.afternoon)}
+  if ((currentHour >= 17 && currentHour < 23) || (currentHour === 23 && currentMinute < 30))  {currentGreeting = getRandomGreeting(greetings.evening)}
+  if ((currentHour >= 0 && currentHour < 5) || (currentHour === 23 && currentMinute > 30))  {currentGreeting = getRandomGreeting(greetings.night)}
 
   
   return (
