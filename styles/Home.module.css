@@ -104,6 +104,27 @@
   margin-left: 0.5rem;
 }
 
+
+.sparkley {
+
+  background: lighten( #2c3e50 , 10% );
+  color: red;
+  border: none;  
+  border-radius: 3px;
+  transition: all 0.25s ease;
+  
+  box-shadow: 0 38px 32px -23px black;
+
+  &:hover {
+   
+    background: #2c3e50;
+    color: transparentize( red,0.8 );
+    
+  }
+  
+}
+
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
