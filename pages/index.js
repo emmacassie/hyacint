@@ -21,7 +21,10 @@ export default function Home() {
   if ((currentHour >= 0 && currentHour < 5) || (currentHour === 23 && currentMinute > 30))  {currentGreeting = getRandomGreeting(greetings.night)}
 
   useEffect(()=>{
-  // default is varying levels of transparent white sparkles
+
+    /*
+    
+    // default is varying levels of transparent white sparkles
     const firstSpk = window.document.querySelectorAll(".sparkley")[0]
     console.log(firstSpk)
     sparkleh([firstSpk]);
@@ -298,7 +301,7 @@ export default function Home() {
     };
 
 
-  
+  */
   },[])
 
   return (
