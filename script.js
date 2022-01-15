@@ -287,12 +287,7 @@ $.fn.imagesLoaded = function (callback) {
 };
 
 const greetings = {
-  morning: [
-    "goodmorning",
-    "hey early bird",
-    "its good to see you",
-    "rise and shine!",
-  ],
+  morning: ["goodmorning", "hey early bird", "its good to see you", "rise and shine!",],
   afternoon: ["good afternoon", "good day", "hello u"],
   evening: ["good evening", "hope you've had a wonderful day", "hello"],
   night: ["hi u tiny bat", "sleep tight"],
