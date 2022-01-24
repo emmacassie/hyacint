@@ -14,21 +14,20 @@ function doThisEverySecond(fn) {
 }
 
 function calculateTimeLeft(current) {
-  const timeDiff = TARGET - current;
+  let timeDiff = TARGET - current;
   const secondsFactor = 1000;
   const minutesFactor = secondsFactor * 60;
   const hoursFactor = minutesFactor * 60;
   const daysFactor = hoursFactor * 24;
   const daysRemaining = Math.floor(timeDiff / daysFactor);
-  const hoursRemaining = Math.floor((timeDiff % daysRemaining) / hoursFactor);
-  const minutesRemaining = Math.floor(
-    (timeDiff % hoursRemaining) / minutesFactor
-  );
-  const secondsRemaining = Math.floor(
-    (timeDiff % minutesRemaining) / secondsFactor
-  );
+  timeDiff = timeDiff - (daysFactor * daysRemaining);
+  const hoursRemaining = Math.floor(timeDiff  / hoursFactor);
+  timeDiff = timeDiff - (hoursRemaining * hoursFactor);
+  const minutesRemaining = Math.floor(timeDiff / minutesFactor );
+  timeDiff = timeDiff - (minutesRemaining * minutesFactor);
+  const secondsRemaining = Math.floor(timeDiff  / secondsFactor );
 
-  return `${daysRemaining} days : ${hoursRemaining} hours : ${minutesRemaining} minutes : seconds ${secondsRemaining}`;
+  return `${daysRemaining} days : ${hoursRemaining} hours : ${minutesRemaining} minutes :  ${secondsRemaining} seconds`;
 }
 
 function displayTimeLeft() {
