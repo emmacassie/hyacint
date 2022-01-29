@@ -50,8 +50,9 @@ a {
   left:0;
   right:0;
   overflow: hidden;
-  background: #04001f;
+  background-color: #04001f;
   z-index: -1;
+  transition: background-color 3s ease-in-out ; 
 }
 
 .sky.day{
@@ -61,8 +62,9 @@ a {
   left:0;
   right:0;
   overflow: hidden;
-  background: #fff;
+  background-color: #fff;
   z-index: -1;
+  
 }
 
 
@@ -74,7 +76,7 @@ a {
 .star {
   position: fixed;
   background-color: #ff0080;
-  transition: all 0.3s ease-in-out, top 97.7s ease-in-out,left 177.7s ease-in-out ; 
+  transition: all 0.3s ease-in-out, top 97.7s ease-in-out,left 177.7s ease-in-out; 
   display: none;
 }
 
@@ -82,7 +84,8 @@ a {
   position: absolute;
   background: #04001f;
   box-shadow: 0 0 3px 3px #04001f;
-  border-radius: 50%
+  border-radius: 50%;
+  transition: background-color 3s ease-in-out, box-shadow 3s ease-in-out;
 }
 
 .day .inside {
