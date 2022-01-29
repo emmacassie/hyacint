@@ -68,44 +68,74 @@ const greetings = {
   night: ["hi u tiny bat", "sleep tight"],
 };
 
-let timeOfDay
+
 let currentGreeting = "Hello";
-const currentHour = new Date().getHours();
-const currentMinute = new Date().getMinutes();
+let timeOfDay
+let dayOrNightSky
 function getRandomGreeting(arr) {
   const randomNumber = Math.random();
   const arrayLength = arr.length;
   const randomIndex = Math.floor(randomNumber * arrayLength);
   return arr[randomIndex];
 }
-if (
-  (currentHour >= 5 && currentHour < 12) ||
-  (currentHour === 5 && currentMinute > 30)
-) {
-  timeOfDay = 'morning'
-}
-if (currentHour >= 12 && currentHour < 17) {
-  timeOfDay = 'afternoon'
-}
-if (
-  (currentHour >= 17 && currentHour < 23) ||
-  (currentHour === 23 && currentMinute < 30)
-) {
-  timeOfDay = 'evening'
-}
-if (
-  (currentHour >= 0 && currentHour < 5) ||
-  (currentHour === 23 && currentMinute > 30)
-) {
-  timeOfDay = 'night'
+function getTimeOfDay() {
+  const currentHour = new Date().getHours();
+  const currentMinute = new Date().getMinutes();
+  if (
+    (currentHour >= 5 && currentHour < 12) ||
+    (currentHour === 5 && currentMinute > 30)
+  ) {
+    return 'morning'
+  }
+  if (currentHour >= 12 && currentHour < 17) {
+    return 'afternoon'
+  }
+  if (
+    (currentHour >= 17 && currentHour < 23) ||
+    (currentHour === 23 && currentMinute < 30)) {
+    return 'evening'
+  }
+  if (
+    (currentHour >= 0 && currentHour < 5) ||
+    (currentHour === 23 && currentMinute > 30)) {
+    return 'night'
+  }
 }
 
-greetingElement = document.querySelector("#special-greeting");
-currentGreeting = getRandomGreeting(greetings[timeOfDay]);
-greetingElement.innerHTML = `${currentGreeting} &lt;3`;
-
-if (timeOfDay === 'morning' || timeOfDay === 'afternoon') {
-  sky.classList.add('day')
-} else {
-  sky.classList.remove('day')
+function createHeaven(time) {
+  if (time === 'morning' || time === 'afternoon') {
+    dayOrNightSky = 'daySky'
+    sky.classList.add('day')
+  } else {
+    sky.classList.remove('day')
+    dayOrNightSky = 'nightSky'
+  }
 }
+
+timeOfDay = getTimeOfDay()
+
+createHeaven(timeOfDay)
+
+const nightSkyInDayTime = () => dayOrNightSky === 'nightSky' && ['morning', 'afternoon'].includes(getTimeOfDay())
+
+
+const daySkyInNightTime = () => dayOrNightSky === 'daySky' && ['evening', 'night'].includes(getTimeOfDay())
+
+let greetingElement = document.querySelector("#special-greeting");
+
+function displayGreeting(element) {
+  currentGreeting = getRandomGreeting(greetings[timeOfDay]);
+  element.innerHTML = `${currentGreeting} &lt;3`;
+}
+
+displayGreeting(greetingElement)
+
+setInterval(() => {
+  const skyShouldChange = nightSkyInDayTime() || daySkyInNightTime()
+  if (skyShouldChange) {
+    timeOfDay = getTimeOfDay()
+    createHeaven(timeOfDay)
+    displayGreeting(greetingElement)
+  }
+
+}, 1000)
