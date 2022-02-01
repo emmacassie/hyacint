@@ -42,33 +42,31 @@ a {
   font-size: 4rem;
 }
 
-
-.sky{
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
+.sky {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   overflow: hidden;
   background-color: #04001f;
   z-index: -1;
-  transition: background-color 3s ease-in-out ; 
+  transition: background-color 3s ease-in-out;
 }
 
-.sky.day{
-  position:absolute;
-  top:0;
-  bottom:0;
-  left:0;
-  right:0;
+.sky.day {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   overflow: hidden;
   background-color: #fff;
   z-index: -1;
-  
 }
 
-
-.star, .inside{
+.star,
+.inside {
   height: 50px;
   width: 50px;
 }
@@ -76,7 +74,8 @@ a {
 .star {
   position: fixed;
   background-color: #ff0080;
-  transition: all 0.3s ease-in-out, top 97.7s ease-in-out,left 177.7s ease-in-out; 
+  transition: all 0.3s ease-in-out, top 97.7s ease-in-out,
+    left 177.7s ease-in-out;
   display: none;
 }
 
@@ -98,13 +97,10 @@ a {
   left: -25px;
 }
 
-
 .bottom-left {
   bottom: -25px;
   left: -25px;
-
 }
-
 
 .top-right {
   top: -25px;
@@ -115,7 +111,6 @@ a {
   bottom: -25px;
   right: -25px;
 }
-
 
 .img {
   margin: 40px auto 0;
