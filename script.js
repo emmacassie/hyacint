@@ -127,6 +127,42 @@ function displayGreeting(element) {
 
 displayGreeting(greetingElement)
 
+// ==============================================================================================start typing magic <<<
+
+const typewriterAnimation = document.createElement("style")
+// each character is 24px wide for fontsize 32px only works cos its mono font face
+const animationDistance = greetingElement.textContent.length * 22
+const animationDuration = greetingElement.textContent.length / 3
+const rules = document.createTextNode(
+  `
+    #special-greeting{
+      animation: typing ${animationDuration}s steps(117, end), blink-caret 0.5s step-end infinite
+    }
+      
+    @-webkit-keyframes typing {
+      from {width: 0;}
+      to {width: ${animationDistance}px;}
+    }
+  `
+)
+typewriterAnimation.appendChild(rules)
+document.getElementsByTagName("head")[0].appendChild(typewriterAnimation)
+const container = document.querySelector("main")
+
+function handleOverflow() {
+  if (
+    greetingElement.offsetWidth >= container.offsetWidth &&
+    greetingElement.style.right !== "0px"
+  ) {
+    greetingElement.style.right = "0px"
+  }
+}
+handleOverflow()
+
+new ResizeObserver(handleOverflow).observe(greetingElement)
+
+// ==============================================================================================end typing magic <<<
+
 setInterval(() => {
   const skyShouldChange = nightSkyInDayTime() || daySkyInNightTime()
   if (skyShouldChange) {
@@ -136,7 +172,7 @@ setInterval(() => {
   }
 }, 1000)
 
-const nextStarSpunsIn = () => 6700 + Math.ceil(Math.random() * 7100)
+const nextStarSpunsIn = () => 2222 + Math.ceil(Math.random() * 2222)
 const spunStars = () => {
   if (starCount) {
     const newStar = rootStar.cloneNode(true)
@@ -152,3 +188,10 @@ const spunStars = () => {
   }
 }
 setTimeout(spunStars, nextStarSpunsIn())
+
+setTimeout(() => {
+  const btn = document.querySelector(".flooper-btn")
+  btn.style.opacity = 0
+  btn.style.cursor = "help"
+  btn.setAttribute("href", "#")
+}, 5000)
