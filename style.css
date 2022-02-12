@@ -35,6 +35,11 @@ a {
   position: relative;
 }
 
+.title {
+color: #d636bc;
+text-align: center;
+}
+
 .typewriter {
   display: flex;
   flex-shrink: 0;
