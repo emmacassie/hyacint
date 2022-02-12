@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>click me</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="a website made for clicking" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<head>
-	<title>click me</title>
-	<meta name="viewport" content="width=device-width" />
-	<meta name="description" content="a website made for clicking" />
-	<link rel="icon" href="/favicon.ico" />
-	<link rel="stylesheet" href="style.css" />
-</head>
+  <body>
+    <div class="sky">
+      <div class="star">
+        <div class="inside top-left"></div>
+        <div class="inside bottom-left"></div>
+        <div class="inside top-right"></div>
+        <div class="inside bottom-right"></div>
+      </div>
+    </div>
+    <main class="main">
+      <h1 id="special-greeting" class="typewriter">{currentGreeting}</h1>
+      <div id="button">
+        <a class="flooper-btn" href="countdown.html">Countdown</a>
+      </div>
+    </main>
+  </body>
 
-<body>
-	<div class="sky">
-		<div class="star">
-			<div class="inside top-left"></div>
-			<div class="inside bottom-left"></div>
-			<div class="inside top-right"></div>
-			<div class="inside bottom-right"></div>
-		</div>
-	</div>
-	<main class="container main">
-		<div class="typewriter">
-			<h1 class- "title" id="special-greeting">{currentGreeting}</h1>
-		</div>
-
-	</main>
-
-</body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js">
-
-</script>
-<script src="script.js">
-
-</script>
-
+  <script src="script.js"></script>
 </html>
