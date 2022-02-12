@@ -34,7 +34,7 @@ function displayTimeLeft() {
   const currentTime = getCurrentTime();
   const timeLeft = calculateTimeLeft(currentTime);
   const element = window.document.querySelector("#time-goes-here");
-  element.textContent = timeLeft;
+  element.textContent = "Countdown: " + timeLeft;
 }
 
 doThisEverySecond(displayTimeLeft);
