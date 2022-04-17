@@ -36,8 +36,8 @@ a {
 }
 
 .title {
-color: #d636bc;
-text-align: center;
+  color: #d636bc;
+  text-align: center;
 }
 
 .typewriter {
@@ -153,7 +153,8 @@ p {
   justify-self: center;
 }
 
-.flooper-btn {
+.flooper-btn,
+.flooper-btn-bingo {
   margin-top: 120px;
   position: relative;
   width: 200px;
@@ -165,12 +166,14 @@ p {
   justify-content: center;
 }
 
-.flooper-btn:hover {
+.flooper-btn:hover,
+.flooper-btn-bingo:hover {
   border-radius: 0px;
   align-self: flex-end;
 }
 
-.flooper-btn::before {
+.flooper-btn::before,
+.flooper-btn-bingo::before {
   content: "";
   position: absolute;
   display: flex;
@@ -184,13 +187,15 @@ p {
   transition: all 0.6s ease-in-out;
 }
 
-.flooper-btn:hover:before {
+.flooper-btn:hover:before,
+.flooper-btn-bingo:hover:before {
   background: white;
   border-radius: 0px;
   transition: all 0.6s ease-in-out;
 }
 
-.flooper-btn::after {
+.flooper-btn::after,
+.flooper-btn-bingo::after {
   content: "mystery countdown";
   position: absolute;
   display: flex;
@@ -225,7 +230,12 @@ p {
   transition: all 0.6s ease-in-out;
 }
 
-.flooper-btn:hover::after {
+.flooper-btn-bingo::after {
+  content: "F1 Bingo";
+}
+
+.flooper-btn:hover::after,
+.flooper-btn-bingo:hover::after {
   background-size: 20%;
   text-shadow: 1px 1px 0px white;
   background-position: center;

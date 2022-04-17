@@ -1,0 +1,10 @@
+.bingo-grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.bingo-cell {
+  border: 1px solid pink;
+  /* height: 70px; */
+  padding: 11px;
+}
