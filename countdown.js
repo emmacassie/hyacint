@@ -3,7 +3,6 @@
 // target time
 
 // current time
-
 fetch("https://ergast.com/api/f1/current/next.json")
   .then((response) => response.json())
   .then((data) => {

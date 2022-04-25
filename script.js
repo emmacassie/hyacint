@@ -190,8 +190,14 @@ const spunStars = () => {
 setTimeout(spunStars, nextStarSpunsIn())
 
 setTimeout(() => {
-  const btn = document.querySelector(".flooper-btn")
-  btn.style.opacity = 0
-  btn.style.cursor = "help"
-  btn.setAttribute("href", "#")
+  try {
+    const btn =
+      document.querySelector(".flooper-btn") ||
+      document.querySelector(".flooper-btn-bingo")
+    btn.style.opacity = 0
+    btn.style.cursor = "help"
+    btn.setAttribute("href", "#")
+  } catch (error) {
+    console.log("caught  ---->>> ", { error })
+  }
 }, 5000)
