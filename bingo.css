@@ -4,7 +4,16 @@
 }
 
 .bingo-cell {
-  border: 1px solid pink;
+  border: 2px solid pink;
   /* height: 70px; */
-  padding: 11px;
+  padding: 21px;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.bingo-cell-selected {
+  background-color: pink;
+  color: navy;
+  transition: background-color 0.5s;
 }

@@ -60,26 +60,89 @@ const bingoList = [
   `Yuki says something food-related`,
 ]
 
-// loop till 25
-for (var i = 0; i < 25; i++) {
-  // select grid cell node
-  var cell = document.createElement("div")
-  // clone and give height and width of 100px
-
-  // add binho-cell class
-  cell.classList.add("bingo-cell")
-  // pick a random item from bringo list
-  // if the itms has been assigned, pick another
-  let randomItem = bingoList[Math.floor(Math.random() * bingoList.length)]
-  while (assignedCards.has(randomItem)) {
-    randomItem = bingoList[Math.floor(Math.random() * bingoList.length)]
+const checkBingo = () => {
+  let bingo = false
+  // check rows
+  for (let i = 0; i < BINGO_SIZE; i++) {
+    const row = i
+    const rowScore = scoreCard[`row${row}`]
+    if (rowScore === BINGO_SIZE) {
+      bingo = true
+    }
   }
-  // add the item to the set
-  assignedCards.add(randomItem)
-
-  // add the item to the cell
-  cell.innerHTML = randomItem
-
-  // append to grid
-  document.querySelector(".bingo-grid-container").appendChild(cell)
+  // check columns
+  for (let i = 0; i < BINGO_SIZE; i++) {
+    const col = i
+    const colScore = scoreCard[`col${col}`]
+    if (colScore === BINGO_SIZE) {
+      bingo = true
+    }
+  }
+  // check diag-tl-br
+  const diagScore = scoreCard["diag-tl-br"]
+  if (diagScore === BINGO_SIZE) {
+    bingo = true
+  }
+  // check diag-tr-bl
+  const diagScore2 = scoreCard["diag-tr-bl"]
+  if (diagScore2 === BINGO_SIZE) {
+    bingo = true
+  }
+  return bingo
 }
+const BINGO_SIZE = 5
+
+const scoreCard = {}
+
+// loop till 25
+for (var i = 0; i < BINGO_SIZE; ++i) {
+  const col = i
+  for (var j = 0; j < BINGO_SIZE; ++j) {
+    const row = j
+    // select grid cell node
+    var cell = document.createElement("div")
+    // clone and give height and width of 100px
+
+    // add binho-cell class
+    cell.classList.add("bingo-cell")
+    // pick a random item from bringo list
+    // if the itms has been assigned, pick another
+    let randomItem = bingoList[Math.floor(Math.random() * bingoList.length)]
+    while (assignedCards.has(randomItem)) {
+      randomItem = bingoList[Math.floor(Math.random() * bingoList.length)]
+    }
+    // add the item to the set
+    assignedCards.add(randomItem)
+
+    // add the item to the cell
+    cell.innerHTML = randomItem
+    cell.addEventListener("click", function (e) {
+      const _i = i
+      const _j = j
+      e.target.classList.add("bingo-cell-selected")
+      scoreCard[`col${_i}`] = scoreCard[`col${_i}`] + 1
+      scoreCard[`row${_j}`] = scoreCard[`row${_j}`] + 1
+      if (_i === _j) {
+        scoreCard["diag-tl-br"] = scoreCard["diag-tl-br"] + 1
+      }
+      if (_i + _j === BINGO_SIZE - 1) {
+        scoreCard["diag-tr-bl"] = scoreCard["diag-tr-bl"] + 1
+      }
+      console.log(scoreCard)
+      if (checkBingo()) {
+        alert("BINGO")
+      }
+    })
+
+    // let x = 8
+    // x = x + 1
+    // x++
+
+    // append to grid
+    document.querySelector(".bingo-grid-container").appendChild(cell)
+    scoreCard[`row${row}`] = 0
+  }
+  scoreCard[`col${col}`] = 0
+}
+scoreCard["diag-tl-br"] = 0
+scoreCard["diag-tr-bl"] = 0
