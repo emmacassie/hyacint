@@ -59,77 +59,45 @@ const bingoList = [
   `Incident gets reviewed after race`,
   `Yuki says something food-related`,
 ]
-const answers = new Set()
 
 const checkBingo = () => {
-  console.log({ answers })
   let bingo = false
-  if (answers.size < BINGO_SIZE) {
-    return false
-  }
   // check rows
-  let rowChecker = -1
-  let counter = 0
-  answers.forEach((answer) => {
-    let row = answer.split("_")[1]
-    if (rowChecker > -1 && rowChecker !== row) {
-      return
+  for (let i = 0; i < BINGO_SIZE; i++) {
+    const row = i
+    const rowScore = scoreCard[`row${row}`]
+    if (rowScore === BINGO_SIZE) {
+      bingo = true
     }
-    rowChecker = row
-    counter++
-  })
-  if (counter === BINGO_SIZE) {
-    bingo = true
   }
-
   // check columns
-  let colChecker = -1
-  let counter2 = 0
-  answers.forEach((answer) => {
-    let col = answer.split("_")[0]
-    if (colChecker > -1 && colChecker !== col) {
-      return
+  for (let i = 0; i < BINGO_SIZE; i++) {
+    const col = i
+    const colScore = scoreCard[`col${col}`]
+    if (colScore === BINGO_SIZE) {
+      bingo = true
     }
-    colChecker = col
-    counter2++
-  })
-  if (counter2 === BINGO_SIZE) {
-    bingo = true
   }
-
   // check diag-tl-br
-  let counter3 = 0
-  answers.forEach((answer) => {
-    if (answer.split("_")[0] === answer.split("_")[1]) {
-      counter3++
-    }
-  })
-  if (counter3 === BINGO_SIZE) {
+  const diagScore = scoreCard["diag-tl-br"]
+  if (diagScore === BINGO_SIZE) {
     bingo = true
   }
-
   // check diag-tr-bl
-  let counter4 = 0
-  answers.forEach((answer) => {
-    if (
-      parseInt(answer.split("_")[0]) + parseInt(answer.split("_")[1]) ===
-      BINGO_SIZE - 1
-    ) {
-      counter4++
-    }
-  })
-  if (counter4 === BINGO_SIZE) {
+  const diagScore2 = scoreCard["diag-tr-bl"]
+  if (diagScore2 === BINGO_SIZE) {
     bingo = true
   }
-
   return bingo
 }
 const BINGO_SIZE = 5
 
+const scoreCard = {}
+
 // loop till 25
-for (var i = 0; i < BINGO_SIZE; i++) {
+for (var i = 0; i < BINGO_SIZE; ++i) {
   const col = i
-  for (var j = 0; j < BINGO_SIZE; j++) {
+  for (var j = 0; j < BINGO_SIZE; ++j) {
     const row = j
     // select grid cell node
     var cell = document.createElement("div")
@@ -137,7 +105,7 @@ for (var i = 0; i < BINGO_SIZE; i++) {
 
     // add binho-cell class
     cell.classList.add("bingo-cell")
-    // pick a random item from bingo list
+    // pick a random item from bringo list
     // if the itms has been assigned, pick another
     let randomItem = bingoList[Math.floor(Math.random() * bingoList.length)]
     while (assignedCards.has(randomItem)) {
@@ -148,30 +116,33 @@ for (var i = 0; i < BINGO_SIZE; i++) {
 
     // add the item to the cell
     cell.innerHTML = randomItem
-    // add cell label add data attribute
-    cell.setAttribute("data-label", `${row}_${col}`)
-    // cell.addEventListener("click", function (e) {
-    //   const _i = i
-    //   const _j = j
-    //   e.target.classList.add("bingo-cell-selected")
-    //   answers.add(`${_i}_${_j}`)
-    //   if (checkBingo()) {
-    //     alert("BINGO")
-    //   }
-    // })
+    cell.addEventListener("click", function (e) {
+      const _i = i
+      const _j = j
+      e.target.classList.add("bingo-cell-selected")
+      scoreCard[`col${_i}`] = scoreCard[`col${_i}`] + 1
+      scoreCard[`row${_j}`] = scoreCard[`row${_j}`] + 1
+      if (_i === _j) {
+        scoreCard["diag-tl-br"] = scoreCard["diag-tl-br"] + 1
+      }
+      if (_i + _j === BINGO_SIZE - 1) {
+        scoreCard["diag-tr-bl"] = scoreCard["diag-tr-bl"] + 1
+      }
+      console.log(scoreCard)
+      if (checkBingo()) {
+        alert("BINGO")
+      }
+    })
+
+    // let x = 8
+    // x = x + 1
+    // x++
 
     // append to grid
     document.querySelector(".bingo-grid-container").appendChild(cell)
-    document
-      .querySelector(".bingo-grid-container")
-      .addEventListener("click", function (e) {
-        const el = e.target
-        const data = el.getAttribute("data-label")
-        answers.add(data)
-        el.classList.add("bingo-cell-selected")
-        if (checkBingo()) {
-          document.querySelector(".winner-label").classList.remove("hidden")
-        }
-      })
+    scoreCard[`row${row}`] = 0
   }
+  scoreCard[`col${col}`] = 0
 }
+scoreCard["diag-tl-br"] = 0
+scoreCard["diag-tr-bl"] = 0

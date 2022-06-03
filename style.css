@@ -153,6 +153,10 @@ p {
   justify-self: center;
 }
 
+.winner-label {
+  color: white;
+}
+
 .flooper-btn,
 .flooper-btn-bingo {
   margin-top: 120px;
@@ -246,4 +250,8 @@ p {
   box-shadow: 1px 1px 0px violet, 2px 2px 0px violet, 3px 3px 0px violet,
     4px 4px 0px violet, 5px 5px 0px violet, 6px 6px 0px violet;
   transition: all 0.6s ease-in-out;
+}
+
+.hidden {
+  visibility: hidden;
 }
